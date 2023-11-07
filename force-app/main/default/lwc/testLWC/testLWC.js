@@ -21,7 +21,7 @@ export default class TestLWC extends NavigationMixin(LightningElement) {
         var inpName = event.target.name;
         var inpVal = event.detail.value;
         this[inpName] = inpVal;
-        console.log('Testing deployment');
+        console.log('Testing deployment 111');
     }
 
     handleSave(event)
