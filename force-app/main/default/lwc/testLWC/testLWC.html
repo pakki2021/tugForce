@@ -1,0 +1,51 @@
+<template>
+    <template if:true={spinner}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium slds-grid slds-wrap">
+        <div class="slds-grid slds-wrap slds-col slds-size_1-of-12"></div>
+        <div class="slds-grid slds-wrap slds-col slds-size_10-of-12"  style="background-color: white;">
+            <h2 class="slds-text-heading_medium slds-align_absolute-center slds-modal__header">Create new Account and related Contact</h2>
+            <div class="slds-p-around_medium slds-grid slds-wrap">
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-right_small">
+                    <lightning-input type="text" label="Account Name" value = "{accName}" name = "accName" variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-left_small">
+                    <lightning-input type="text" label="Account WebSite" value = "{accWebsite}" name = "accWebsite" variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-right_small">
+                    <lightning-input type="text" label="Contact First Name" value = "{cntFstName}" name = "cntFstName"  variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-left_small">
+                    <lightning-input type="text" label="Contact Last Name" value = "{cntLstname}" name = "cntLstname"  variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-right_small">
+                    <lightning-input type="text" label="Contact Email" value = "{cntEmail}" name = "cntEmail"  variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-left_small">
+                    <lightning-input type="tel" label="Contact phone Number" value = "{cntPhNum}" name = "cntPhNum"  variant="label-inline" onchange={handleInputChange}></lightning-input>
+                </div>
+                    <div class="slds-grid slds-wrap slds-col slds-size_1-of-1 slds-align_absolute-center slds-p-top_medium">
+                        <template if:true={showErrMsg}>
+                            <div class="slds-text-color_error slds-p-left_x-small">
+                                Please fill all the above fields!
+                            </div>
+                        </template>
+                    </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-left_small">
+                    <lightning-input type="file" label="Upload file" accept=".docx, .pdf" onchange={handleFilesChange}></lightning-input>
+                </div>
+                <div class="slds-grid slds-wrap slds-col slds-size_1-of-2 slds-p-left_small slds-p-top_small" style={styleClass}>
+                    Uploaded file : {fileFields.Title}
+                </div>
+            </div>
+            <div class="slds-modal__footer slds-grid slds-wrap slds-col slds-size_1-of-1 slds-align_absolute-center">
+                <lightning-button variant="brand" label="Save" name = 'save' onclick={handleSave} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Save and new" name = "saveAndNew" onclick={handleSave} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="base" label="Cancel" name = "cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap slds-col slds-size_1-of-12"></div>
+    </div>
+</template>
