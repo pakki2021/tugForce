@@ -38,5 +38,4 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
-force-app
 scripts
