@@ -7,10 +7,10 @@ public with sharing class TestingDeployment {
         //feature 3 commit
     }
 
-    public functionForTest1(){
+    public void functionForTest1(){
         system.debug('Fuction for Test1');        
     }
-    public feature1()
+    public void feature1()
     {
         System.debug('This is feature1 branch cls');       
     }
