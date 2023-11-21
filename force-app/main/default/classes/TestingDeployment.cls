@@ -14,4 +14,8 @@ public with sharing class TestingDeployment {
     {
         System.debug('This is feature1 branch cls');       
     }
+    public void stage1()
+    {
+        System.debug('adding this method to test the PR workflow');
+    }
 }
