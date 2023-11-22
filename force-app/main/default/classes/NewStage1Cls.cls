@@ -16,5 +16,6 @@ public with sharing class NewStage1Cls {
     public void testMethod2()
     {
         System.debug('testMethod2');
+        System.debug('testing PR');
     }
 }
