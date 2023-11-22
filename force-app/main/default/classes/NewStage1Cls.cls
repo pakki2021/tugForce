@@ -12,4 +12,9 @@ public with sharing class NewStage1Cls {
     {
         System.debug('testMethod1');
     }
+
+    public void testMethod2()
+    {
+        System.debug('testMethod2');
+    }
 }
