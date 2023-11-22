@@ -7,9 +7,4 @@ public with sharing class NewStage1Cls {
     {
         System.debug('Stage 1 method');
     }
-
-    public void testMethod1()
-    {
-        System.debug('testMethod1');
-    }
 }
