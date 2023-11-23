@@ -34,12 +34,6 @@
                 <stringValue>Value added from flow</stringValue>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <field>Reason</field>
-            <value>
-                <stringValue>Installation</stringValue>
-            </value>
-        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
