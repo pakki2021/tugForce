@@ -115,4 +115,5 @@ jobs:
               run: sfdx force:source:deploy -p "changed-sources/force-app" --ignorewarnings 
 
             - name: 'Deploy destructive changes (if any)'
+            cat ./changed-sources/destructiveChanges/destructiveChanges.xml
               run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --ignorewarnings
