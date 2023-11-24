@@ -29,6 +29,12 @@
         <locationX>456</locationX>
         <locationY>355</locationY>
         <inputAssignments>
+            <field>CallType</field>
+            <value>
+                <stringValue>Inbound</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Description</field>
             <value>
                 <stringValue>Testing git PR</stringValue>
