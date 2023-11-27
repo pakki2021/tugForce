@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Salesforce_GitHub</fullName>
+        <fullName>SF_label_1</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Salesforce GitHub</shortDescription>
-        <value>Salesforce</value>
+        <shortDescription>SF label 1</shortDescription>
+        <value>Salesforce Github PR Testing</value>
     </labels>
     <labels>
         <fullName>Testing_Deployment</fullName>
