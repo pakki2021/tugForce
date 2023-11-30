@@ -117,4 +117,4 @@ jobs:
             - name: 'Deploy destructive changes (if any)'
               run: |
                   cat ./changed-sources/destructiveChanges/destructiveChanges.xml
-                  sf project deploy start --metadata-dir "changed-sources\destructiveChanges"
+                  sf project deploy start --metadata-dir "changed-sources/destructiveChanges"
