@@ -151,7 +151,17 @@ jobs:
                   sf sgd source delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/ 
 
             - name: 'Deploy delta changes (if any)'
-              run: sf project deploy start --source-dir "changed-sources/force-app" 
+              if: ${{ env.APEX_TESTS != 'all' }}
+              run: |
+               echo ${{env.APEX_TESTS}}
+               sf project deploy start --source-dir "changed-sources/force-app" --checkonly --testlevel RunSpecifiedTests --runtests ${{env.APEX_TESTS}} --json
+
+            # If the env variable equals all, we run all tests
+            - name: 'Check-only deploy delta changes - run all tests'
+              if: ${{ env.APEX_TESTS == 'all' }}
+              run: |
+                  sf project deploy start --source-dir "changed-sources/force-app" --checkonly --testlevel RunLocalTests  --json
+
 
             - name: 'Deploy destructive changes (if any)'
               run: |
