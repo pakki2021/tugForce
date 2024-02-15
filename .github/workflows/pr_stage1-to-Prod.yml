@@ -161,9 +161,3 @@ jobs:
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
                   sf project deploy validate --source-dir "changed-sources/force-app" --test-level RunLocalTests  --json
-
-
-            - name: 'Deploy destructive changes (if any)'
-              run: |
-                  cat ./changed-sources/destructiveChanges/destructiveChanges.xml
-                  sf project deploy validate --metadata-dir "changed-sources/destructiveChanges"
