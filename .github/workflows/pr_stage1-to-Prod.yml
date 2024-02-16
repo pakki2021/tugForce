@@ -7,7 +7,7 @@ on:
     pull_request:
       # The events are that a PR is opened, or when a commit is pushed
       # to a branch that has an existing pull request
-      types: [opened, synchronize]
+      types: [closed]
       # The branches filter allows to specify that this workflow should only
       # run if the branch name is "master". This way we prevent this workflow
       # from running when PRs are opened on other branches
@@ -28,7 +28,7 @@ jobs:
         # In this case, we are going to run our commands on the latest version
         # of ubuntu
         runs-on: ubuntu-latest
-        if: ${{ github.actor != 'dependabot[bot]' }}
+        if: ${{ github.actor != 'dependabot[bot]' }} && github.event.pull_request.merged == true
         steps:
             # Now we install nodejs in the VM, and specify version 14
             - uses: actions/setup-node@v3
