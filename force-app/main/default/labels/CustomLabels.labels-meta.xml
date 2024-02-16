@@ -14,4 +14,11 @@
         <shortDescription>Testing Deployment</shortDescription>
         <value>Testing PR</value>
     </labels>
+    <labels>
+        <fullName>Testing_Deployment1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Testing Deployment1</shortDescription>
+        <value>Testing PR1</value>
+    </labels>
 </CustomLabels>
