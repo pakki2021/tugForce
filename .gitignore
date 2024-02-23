@@ -38,5 +38,6 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
-force-app
+force-app1
 scripts
+.github
