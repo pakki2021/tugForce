@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy-on-UAT-org-on-merge:
-    if: ${{ github.actor != 'dependabot[bot]' }} && github.event.pull_request.merged == true
+    if: ${{ github.actor != 'dependabot[bot]' }} && ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       # Now we install nodejs in the VM, and specify version 14
