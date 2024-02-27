@@ -33,6 +33,7 @@ jobs:
           wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
           mkdir ~/sf
           tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
+          prEvent=$(cat github.event.pull_request.merged) 
           echo "$HOME/sf/bin" >> $GITHUB_PATH
           ~/sf/bin/sf version
 
