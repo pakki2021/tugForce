@@ -14,6 +14,8 @@ on:
 
 jobs:
   deploy-on-UAT-org-on-merge:
+    echo 'in deploy on UAT'
+    echo ${{github.event.pull_request.merged}}
     if: ${{ github.event.pull_request.merged == true }} && ${{ github.actor != 'dependabot[bot]' }} 
     runs-on: ubuntu-latest
     steps:
