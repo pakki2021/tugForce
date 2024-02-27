@@ -27,13 +27,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: "Read PR Body"
+        env:
+          # The pull request body is available through the github context object
+          # we put the body of the pull request in an env variable (only available to this step)
+          PR_BODY: ${{github.event.pull_request.merged}}
+  
+        run: |
+          echo $PR_BODY > ./pr_body.txt             
+          TESTS=$(cat pr_body.txt)       
+
       # Now Install Salesforce CLI
       - name: "Install Salesforce CLI"
         run: |
           wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
           mkdir ~/sf
           tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
-          prEvent=$(cat github.event.pull_request.merged) 
           echo "$HOME/sf/bin" >> $GITHUB_PATH
           ~/sf/bin/sf version
 
