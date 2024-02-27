@@ -13,9 +13,16 @@ on:
       - "force-app/**"
 
 jobs:
+  explore:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo "env variables ${{toJson(github)}}"
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      
   deploy-on-UAT-org-on-merge:
-    echo 'in deploy on UAT'
-    echo ${{github.event.pull_request.merged}}
     if: ${{ github.event.pull_request.merged == true }} && ${{ github.actor != 'dependabot[bot]' }} 
     runs-on: ubuntu-latest
     steps:
