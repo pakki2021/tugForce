@@ -1,21 +1,30 @@
 # Unique name for this workflow
-name: Deploy on UAT
+name: Deploy to UAT on merge
 
 # Definition when the workflow should run
 on:
   # The workflow will run whenever an event happens on a pull request
-  pull_request: 
-      types:  [closed]
+  pull_request:
+    types: [closed]
 
-      branches: [Test]
+    branches: [UAT]
 
-      paths:
-        - "force-app/**"
+    paths:
+      - "force-app/**"
 
 jobs:
-  deploy-on-UAT-org-on-merge:
+  explore:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }} && github.event.pull_request.merged == true
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo "env variables ${{toJson(github)}}"
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      
+  deploy-on-UAT-org-on-merge:
+    if: ${{ github.event.pull_request.merged == true && github.actor != 'dependabot[bot]' }} 
+    runs-on: ubuntu-latest
     steps:
       # Now we install nodejs in the VM, and specify version 14
       - uses: actions/setup-node@v3
@@ -26,6 +35,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: "Read PR Body"
+        env:
+          # The pull request body is available through the github context object
+          # we put the body of the pull request in an env variable (only available to this step)
+          PR_BODY: ${{github.event.pull_request.merged}}
+  
+        run: |
+          echo $PR_BODY > ./pr_body.txt             
+          TESTS=$(cat pr_body.txt)       
 
       # Now Install Salesforce CLI
       - name: "Install Salesforce CLI"
@@ -60,7 +79,7 @@ jobs:
       - name: "Authenticate to Integration Org"
         run: sf org login sfdx-url -f ./SFDX_UAT_INTEGRATION_URL.txt -s -a integration
 
-      - name: "Create delta packages for new, modified or deleted metadata"
+      - name: "Create delta packages for neW or modified metadata"
         run: |
           mkdir changed-sources
           sf sgd source delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/
