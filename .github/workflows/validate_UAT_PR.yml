@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Validate on UAT
+name: Validate UAT on pull request
 
 # Definition when the workflow should run
 on:
@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [opened]
 
-    branches: [Test]
+    branches: [UAT]
 
     paths:
       - "force-app/**"
@@ -72,7 +72,7 @@ jobs:
       - name: "Authenticate to Integration Org"
         run: sf org login sfdx-url -f ./SFDX_UAT_INTEGRATION_URL.txt -s -a integration
 
-      - name: "Create delta packages for new, modified or deleted metadata"
+      - name: "Create delta packages for new or modified metadata"
         run: |
           mkdir changed-sources
           sf sgd source delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/
@@ -84,7 +84,7 @@ jobs:
           sf project deploy validate --source-dir "changed-sources/force-app" --test-level RunSpecifiedTests --tests ${{env.APEX_TESTS}} --json
 
       # If the env variable equals all, we run all tests
-      - name: "Check-only Validate delta changes - run all tests"
+      - name: "Validate delta changes - run all tests"
         if: ${{ env.APEX_TESTS == 'all' }}
         run: |
           sf project deploy validate --source-dir "changed-sources/force-app" --test-level RunLocalTests  --json
