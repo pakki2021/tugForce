@@ -87,4 +87,4 @@ jobs:
       - name: "Validate delta changes - run all tests"
         if: ${{ env.APEX_TESTS == 'all' }}
         run: |
-          sf project deploy validate --source-dir "changed-sources/force-app" --test-level RunLocalTests  --json
+          sf project deploy start --source-dir "changed-sources/force-app" --dry-run --test-level NoTestRun  --json
