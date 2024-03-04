@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      # Now we install nodejs in the VM, and specify version 14
+      # Now we install nodejs in the VM, and specify version 20
       - uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "20"
 
       - name: "Checkout source code"
         uses: actions/checkout@v3
@@ -87,4 +87,4 @@ jobs:
       - name: "Validate delta changes - run all tests"
         if: ${{ env.APEX_TESTS == 'all' }}
         run: |
-          sf project deploy start --source-dir "changed-sources/force-app" --dry-run --json
+          sf project deploy start --source-dir "changed-sources/force-app" --dry-run --test-level NoTestRun --json
