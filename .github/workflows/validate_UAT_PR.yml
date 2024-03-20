@@ -5,7 +5,7 @@ name: Validate UAT on pull request
 on:
   # The workflow will run whenever an event happens on a pull request
   pull_request:
-    types: [opened]
+    types: [opened,synchronize]
 
     branches: [UAT]
 
